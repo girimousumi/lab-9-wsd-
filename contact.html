@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="contact.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <title>Contact Form</title>
+</head>
+<script >
+    function ValidateForm() {
+      var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+        var name = document.getElementById('name').value;
+        if(!regName.test(name)){
+            alert('Please enter your full name (first & last name).');
+            document.getElementById('name').focus();
+            return false;
+        }
+    
+        var phoneno = /^\d{10}$/;
+        var phone = document.getElementById('phone').value;
+        if (!phoneno.test(phone)) {
+        alert('Please provide a valid phone number');
+        phone.focus;
+        return false;
+     }
+    
+      var email = document.getElementById('email');
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    
+        if (!filter.test(email.value)) {
+        alert('Please provide a valid email address');
+        email.focus;
+        return false;
+     }
+     var newPassword = document.getElementById('password');
+        var minNumberofChars = 8;
+        var maxNumberofChars = 16;
+        var isNonWhiteSpace = /^\S*$/;
+        var isContainsUppercase = /^(?=.*[A-Z]).*$/;
+        var isContainsLowercase = /^(?=.*[a-z]).*$/;
+        var isContainsNumber = /^(?=.*[0-9]).*$/;
+        var isContainsSymbol = /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
+        var isValidLength = /^.{8,16}$/;
+        
+        if (!isNonWhiteSpace.test(newPassword.value)) {
+        alert("Password must not contain Whitespaces.");
+        newPassword.focus;
+      }
+      if (!isContainsUppercase.test(newPassword.value)) {
+        alert("Password must have at least one Uppercase Character.");
+        newPassword.focus;
+      }
+      if (!isContainsLowercase.test(newPassword.value)) {
+        alert("Password must have at least one Lowercase Character.");
+        newPassword.focus;
+      }
+      if (!isContainsNumber.test(newPassword.value)) {
+        alert("Password must contain at least one Digit.");
+        newPassword.focus;
+      }
+      if (!isContainsSymbol.test(newPassword.value)) {
+        alert("Password must contain at least one Special Symbol.");
+        newPassword.focus;
+      }
+      if (!isValidLength.test(newPassword.value)) {
+        alert("Password must be 8-16 Characters Long.");
+        newPassword.focus;
+        return false;
+      }
+    }
+    </script>
+    <script>
+      function show() {
+        var color = document.getElementById("demo").value;
+            background(color);
+            console.log("hello");
+        }
+        function createCookie(name, value, days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+function background(color){
+    document.body.style.backgroundColor = color;
+    createCookie("backgroundColor", color, 365);
+}
+    
+    function setCookie(cname,cvalue,exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays*24*60*60*1000));
+      var expires = "expires=" + d.toGMTString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      console.log(document.cookie);
+    }
+    
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+    
+    function checkCookie() {
+      var color = readCookie("backgroundColor");
+if (color) {
+    document.body.style.backgroundColor = color;
+}
+console.log("onsubmit");
+        document.cookie = "username=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+        document.cookie = "email=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+        document.cookie = "phone=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+        document.cookie = "backgroundColor=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+
+      var user=getCookie("username");
+      var email=getCookie("email");
+      var phone=getCookie("phone");
+      var color=getCookie("backgroundColor");
+      console.log(document.cookie);
+      
+      if (user != "" && email != "" && phone != "") {
+        alert("Welcome again " + user + " "+ "with email-id "+" "+ email +" "+"and phone number "+" "+ phone);
+        // sessionStorage.setItem("name", user);
+        // localStorage.setItem("email", email);
+        // let emailid=localStorage.getItem("email")
+
+        // document.cookie = "username=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+        // document.cookie = "email=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+        // document.cookie = "phone=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+      } else {
+         user =document.forms["form1"]["name"].value;
+         email =document.forms["form1"]["email"].value;
+         phone =document.forms["form1"]["phone"].value;
+         color =document.forms["form1"]["demo"].value;
+         console.log(color);
+         sessionStorage.setItem("name", user);
+        localStorage.setItem("email", email);
+        let emailid=localStorage.getItem("email")
+         if (user != "" && user != null) {
+           setCookie("username", user, 30);
+         }
+         if (email != "" && email != null) {
+           setCookie("email", email, 30);
+         }
+         if (phone != "" && phone != null) {
+           setCookie("phone", phone, 30);
+         }
+         if (color != "" && color != null) {
+           setCookie("backgroundColor", color, 30);
+      }
+    }
+      
+    }
+    function checkCookie1() {
+      console.log("onload");
+      var color = readCookie("backgroundColor");
+if (color) {
+    document.body.style.backgroundColor = color;
+}
+      var user=getCookie("username");
+      var email=getCookie("email");
+      var phone=getCookie("phone");
+      var color=getCookie("backgroundColor");
+      console.log(document.cookie);
+      
+      if (user != "" && email != "" && phone != "") {
+        alert("Welcome again " + user + " "+ "with email-id "+" "+ email +" "+"and phone number "+" "+ phone);
+        // sessionStorage.setItem("name", user);
+        // localStorage.setItem("email", email);
+        // let emailid=localStorage.getItem("email")
+
+        // document.cookie = "username=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+        // document.cookie = "email=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+        // document.cookie = "phone=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+      } else {
+         user =document.forms["form1"]["name"].value;
+         email =document.forms["form1"]["email"].value;
+         phone =document.forms["form1"]["phone"].value;
+         color =document.forms["form1"]["demo"].value;
+         console.log(color);
+         sessionStorage.setItem("name", user);
+        localStorage.setItem("email", email);
+        let emailid=localStorage.getItem("email")
+         if (user != "" && user != null) {
+           setCookie("username", user, 30);
+         }
+         if (email != "" && email != null) {
+           setCookie("email", email, 30);
+         }
+         if (phone != "" && phone != null) {
+           setCookie("phone", phone, 30);
+         }
+         if (color != "" && color != null) {
+           setCookie("backgroundColor", color, 30);
+      }
+    }
+      
+    }
+    
+    </script>
+    <!-- <script>
+      function createCookie(name, value, days) {
+  if (days) {
+      var date = new Date();
+      date.setTime(date.getTime()+(days*24*60*60*1000));
+      var expires = "; expires="+date.toGMTString();
+  }
+  else var expires = "";
+  document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
+function background(color){
+  document.body.style.backgroundColor = color;
+  createCookie("backgroundColor", color, 365);
+}
+function eraseCookie(name) {
+  createCookie(name,"",-1);
+}
+</script> -->
+<body onload="checkCookie1()">
+    <div class="container">
+        <img src="pexels-lisa-fotios-1855214.jpg" alt="cakeshop" class="bg">
+        <div class="overlay"></div>
+         <div class="header">
+             <img src="logo1-removebg-preview.png" class="logo">
+             <nav>
+                 <ul>
+                     <li><a href="homepage.html">Home</a></li>
+                     <li><a href="about.html">About</a></li>
+                     <li><a href="#catalogue">Catalogue</a></li>
+                     <li><a href="#gallery">Gallery</a></li>
+                 </ul>
+             </nav>
+             <a href="contact.html"><button class="btn" id="btn1">Contact</button></a>
+             <button class="btn" id="btn2">Sign Up</button>
+         </div>
+    </div>
+    <!--contact section-->
+<section class="contact" id="contact">
+    <h1>Contact Us</h1>
+    <div class="form-container" onsubmit="return ValidateForm()">
+      <form name='form1' action="http://localhost:3090/contact.html" method="post">
+    
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name..">
+  
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" name="phone" placeholder="Your phone number..">
+  
+        <label for="email">Email-Id</label>
+        <input type="text" id="email" name="email-id" placeholder="Your Email-ID..">
+  
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Your Password..">
+    
+        
+        <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+        <p>Select the color <select id="demo" onclick="show()">
+          <option disabled selected value> -- select an option -- </option>
+          <option value="black" >Black</option>
+          <option value="red">Red</option>
+          <option value="yellow">Yellow</option>
+          <option value="violet">Violet</option>
+      </select></p>
+        <input type="submit" name="submit" value="Submit" onclick="checkCookie()"/>
+    
+      </form>
+    </div>
+  </section>
+</body>
+</html>
